@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "20180704.h"
 
+using namespace day_20180704;
+
 void Solution::test()
 {
 	cout << "test 1:" << solution(1).c_str() << endl;

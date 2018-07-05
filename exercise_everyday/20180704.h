@@ -5,6 +5,9 @@
 
 using namespace std;
 
+namespace day_20180704
+{
+
 class Solution
 {
 public:
@@ -16,3 +19,5 @@ public:
 		return (num&(num - 1)) == 0;
 	}
 };
+
+}
