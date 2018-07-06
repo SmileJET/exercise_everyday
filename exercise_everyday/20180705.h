@@ -12,10 +12,13 @@ namespace day_20180705{
 class Solution
 {
 public:
+
 	void test()
 	{
 		cout << "10 / 3 = " << solution(10, 3) << endl;
 		cout << "7 / (-3) = " << solution(7, -3) << endl;
+
+		answer();
 	}
 
 	int solution(int32_t dividend, int32_t divisor)
@@ -77,6 +80,39 @@ public:
 	int positive(int n)
 	{
 		return (getSign(n) & 1) ? negtive(n) : n;
+	}
+
+	void answer() {
+		cout << "answer:" << endl;
+		cout << "10 / 3 = " << divide(10, 3) << endl;
+	}
+	int divide(int dividend, int divisor) {
+		long res = divideLong(dividend, divisor);
+		if (res > INT_MAX)return INT_MAX;
+		else if (res < INT_MIN) return INT_MIN;
+		else return res;
+	}
+	long divideLong(long dividend, long divisor) {
+		bool isPositive;
+		// 记录最终结果是正还是负
+		isPositive = ((dividend < 0) && (divisor < 0)) || (dividend > 0) && (divisor > 0);
+		// 将两个数都变成正数
+		dividend = abs(dividend);
+		divisor = abs(divisor);
+		long count, tmp;
+		long res = 0;
+		while (dividend >= divisor) {
+			count = 1;
+			tmp = divisor;
+			while (tmp <= dividend) {
+				tmp <<= 1;
+				count <<= 1;
+			}
+			res += count >> 1;
+			dividend -= (tmp >> 1);
+		}
+		if (isPositive)return res;
+		else return -res;
 	}
 };
 }
