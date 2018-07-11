@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+#include <algorithm>
 
 using namespace std;
 
@@ -23,6 +24,9 @@ namespace day_20180709
 			{
 				cout << "i = " << i << "\t[0]:" << res[i][0] << "\t[1]:\t" << res[i][1] << endl;
 			}
+
+			cout << "answer:" << endl;
+			answer();
 		}
 
 		vector<vector<int>> solution(vector<vector<int>> input)
@@ -69,8 +73,33 @@ namespace day_20180709
 
 		void answer()
 		{
-
+			vector<pair<int, int>> input = { { 7, 0 },{ 4, 4 },{ 7, 1 },{ 5, 0 },{ 6, 1 },{ 5, 2 } };
+			cout << "input:" << endl;
+			display_pair(input);
+			vector<pair<int, int>> res = reconstructQueue(input);
+			cout << "result:" << endl;
+			display_pair(res);
 		}
 
+		void display_pair(vector<pair<int, int>> input)
+		{
+			for (int i = 0; i < input.size(); i++)
+			{
+				cout << "first : " << input[i].first << "\tsecond : " << input[i].second << endl;
+			}
+		}
+
+		vector<pair<int, int>> reconstructQueue(vector<pair<int, int>>&people) {
+			sort(people.begin(), people.end(), [](const pair<int, int> &a, const pair<int, int> &b) {
+				return a.first > b.first || (a.first == b.first && a.second < b.second);
+			});
+			vector<pair<int, int>> res(people.size());
+			for (int i = 0; i < people.size(); i++)
+			{
+				res.insert(res.begin() + people[i].second, people[i]);
+			}
+			res.resize(people.size());
+			return res;
+		}
 	};
 }
