@@ -23,21 +23,23 @@ namespace day_20180713
 			display(input2);
 			res = solution(input2);
 			cout << "result : " << res[0] << "\t" << res[1] << endl;
+			answer(input1);
+			answer(input2);
 		}
 
 		int* solution(vector<int> input)
 		{
 			int res[] = { 0, 0 };
-			for (int i = 0; i < input.size()-1; i++)
+			for (int i = 0; i < input.size() - 1; i++)
 			{
-				if (input[i] == input[i + 1]) 
-				{ 
+				if (input[i] == input[i + 1])
+				{
 					res[0] = input[i];
-					res[1] = input[i] + 1; 
-					break; 
+					res[1] = input[i] + 1;
+					break;
 				}
-				if (input[i] + 1 != input[i + 1]) 
-				{ 
+				if (input[i] + 1 != input[i + 1])
+				{
 					res[0] = input[i];
 					res[1] = input[i + 1] - 1;
 				}
@@ -52,6 +54,35 @@ namespace day_20180713
 				cout << input[i] << "\t";
 			}
 			cout << endl;
+		}
+
+		void answer(vector<int>& input)
+		{
+			cout << "answer:" << endl;
+			display(input);
+			vector<int> res = findRepeat(input);
+			cout << "res:" << res[0] << "\t" << res[1] << endl;
+		}
+
+		vector<int> findRepeat (vector<int>& nums)
+		{
+			vector<int> res(2);
+			vector<int> newnums(nums.size() + 1);
+			for (int i = 0; i < nums.size(); i++)
+			{
+				newnums[nums[i]]++;
+				if (newnums[nums[i]] == 2)res[0] = nums[i];//重复的数
+			}
+			//找缺少的那个数
+			for (int i = 1; i <= nums.size(); i++)
+			{
+				if (newnums[i] == 0)
+				{
+					res[1] = i;
+					break;
+				}
+			}
+			return res;
 		}
 	};
 
