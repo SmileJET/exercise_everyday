@@ -11,12 +11,14 @@ namespace day_20180706
 	class Solution
 	{
 	public:
+		
 		void test()
 		{
 			int input1[] = { 10, 10, 10 };
 			int input2[] = { 1, 2, 3, 5, 5, 6 };
 			cout << "num:" << solution(input2, 6) << endl;
 		}
+		
 		int solution(int input[], int size)
 		{
 			int tmp[1000], count = 0, pre = -1, sum = 0;
