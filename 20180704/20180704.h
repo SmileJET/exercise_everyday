@@ -35,6 +35,7 @@ public:
 			cur *= 2;
 		}
 	}
+	
 	// answer
 	bool isPowerOf2(int num) {
 		if (num <= 0)return false;
