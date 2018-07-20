@@ -22,6 +22,7 @@ namespace day_20180719
 			int val;
 			struct ListNode* next;
 		};
+		typedef struct ListNode ListNode;
 	public:
 		void test()
 		{
@@ -159,14 +160,14 @@ namespace day_20180719
 				kNode = kNode->next;
 			}
 			ListNode* lastNode = kNode;
-			while (lastNode->next)// ÕÒµ½×îºóÒ»¸ö½Úµã
+			while (lastNode->next)// æ‰¾åˆ°æœ€åä¸€ä¸ªèŠ‚ç‚¹
 			{
 				lastNode = lastNode->next;
 			}
 
-			lastNode->next = head->next;// ×îºóÒ»¸ö½ÚµãÁ¬½Óµ½Í·½áµã
-			head->next = kNode->next;// ĞÂµÄÍ·½áµãÊÇk+1½Úµã
-			kNode->next = NULL;// µÚk¸ö½Úµãºó¶Ï¿ª
+			lastNode->next = head->next;// æœ€åä¸€ä¸ªèŠ‚ç‚¹è¿æ¥åˆ°å¤´ç»“ç‚¹
+			head->next = kNode->next;// æ–°çš„å¤´ç»“ç‚¹æ˜¯k+1èŠ‚ç‚¹
+			kNode->next = NULL;// ç¬¬kä¸ªèŠ‚ç‚¹åæ–­å¼€
 		}
 
 		int size(ListNode* head)
