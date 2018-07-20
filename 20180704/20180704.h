@@ -16,6 +16,7 @@ public:
 		cout << "test 1:" << solution(1).c_str() << endl;
 		cout << "test 1:" << solution(218).c_str() << endl;
 	}
+	
 	string solution(int input)
 	{
 		if (input <= 0) { return "false"; }
