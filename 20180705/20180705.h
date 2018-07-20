@@ -23,7 +23,7 @@ public:
 
 	int solution(int32_t dividend, int32_t divisor)
 	{
-		//±»³ıÊı²»ÄÜÎª0
+		//è¢«é™¤æ•°ä¸èƒ½ä¸º0
 		if (divisor == 0)
 			throw std::runtime_error("Divided can't be zero...");
 
@@ -52,31 +52,31 @@ public:
 		return a;
 		else
 		return add(a ^ b, (a & b) << 1);
-		//Òì»ò½á¹û + ÓëÔËËã½á¹û×óÒÆÒ»Î»
+		//å¼‚æˆ–ç»“æœ + ä¸è¿ç®—ç»“æœå·¦ç§»ä¸€ä½
 		*/
 	}
 
 	int subtraction(int a, int b)
 	{
-		//¼ÓÉÏ±»¼õÊıµÄÏà·´Êı
+		//åŠ ä¸Šè¢«å‡æ•°çš„ç›¸åæ•°
 		return add(a, negtive(b));
 	}
 
-	//È¡³ö·ûºÅÎ»
+	//å–å‡ºç¬¦å·ä½
 	int getSign(int n)
 	{
 		return n >> 31;
 	}
 
-	//ÇónµÄÏà·´Êı
-	//~£º°´Î»È¡·´
-	//add£º¼Ó·¨²Ù×÷£¬Ä©Î»¼ÓÒ»
+	//æ±‚nçš„ç›¸åæ•°
+	//~ï¼šæŒ‰ä½å–å
+	//addï¼šåŠ æ³•æ“ä½œï¼Œæœ«ä½åŠ ä¸€
 	int negtive(int n)
 	{
 		return add(~n, 1);
 	}
 
-	//ÇónµÄ¾ø¶ÔÖµ
+	//æ±‚nçš„ç»å¯¹å€¼
 	int positive(int n)
 	{
 		return (getSign(n) & 1) ? negtive(n) : n;
@@ -86,17 +86,19 @@ public:
 		cout << "answer:" << endl;
 		cout << "10 / 3 = " << divide(10, 3) << endl;
 	}
+	
 	int divide(int dividend, int divisor) {
 		long res = divideLong(dividend, divisor);
 		if (res > INT_MAX)return INT_MAX;
 		else if (res < INT_MIN) return INT_MIN;
 		else return res;
 	}
+	
 	long divideLong(long dividend, long divisor) {
 		bool isPositive;
-		// ¼ÇÂ¼×îÖÕ½á¹ûÊÇÕı»¹ÊÇ¸º
+		// è®°å½•æœ€ç»ˆç»“æœæ˜¯æ­£è¿˜æ˜¯è´Ÿ
 		isPositive = ((dividend < 0) && (divisor < 0)) || (dividend > 0) && (divisor > 0);
-		// ½«Á½¸öÊı¶¼±ä³ÉÕıÊı
+		// å°†ä¸¤ä¸ªæ•°éƒ½å˜æˆæ­£æ•°
 		dividend = abs(dividend);
 		divisor = abs(divisor);
 		long count, tmp;
