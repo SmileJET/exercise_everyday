@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include <vector>
+#include <assert.h>
 
 using namespace std;
 
@@ -19,6 +20,9 @@ namespace day_20180720
 			{
 				cout << output[i] << "\t";
 			}
+			cout << endl;
+
+			answer(input);
 		}
 
 
@@ -51,9 +55,36 @@ namespace day_20180720
 			qsort(input, head+1, j);
 		}
 
-		void answer()
+		void answer(vector<int> input)
 		{
-		
+			cout << "answer:" << endl;
+			sortColors(input);
+			for (int i = 0; i < input.size(); i++)
+			{
+				cout << input[i] << "\t";
+			}
+		}
+
+		void sortColors(vector<int>& nums)
+		{
+			int start = 1; //[0 ... start] 都为0
+			int end = nums.size();// [end ... n-1]都为2
+			for (int i = 0; i < end;)
+			{
+				if(nums[i]==0)
+				{
+					i++;
+				}
+				else if (nums[i] == 2)
+				{
+					swap(nums[--end], nums[i]);
+				}
+				else
+				{
+					//assert(nums[i] == 0);
+					swap(nums[++start], nums[i++]);
+				}
+			}
 		}
 
 	
