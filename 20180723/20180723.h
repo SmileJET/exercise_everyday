@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <unordered_map>
+#include <queue>
 
 using namespace std;
 
@@ -20,6 +22,7 @@ namespace day_20180723
 			cout << "input:" << input1.c_str() << "\toutput:" << solution(input1).c_str() << endl;
 			cout << "input:" << input2.c_str() << "\toutput:" << solution(input2).c_str() << endl;
 			cout << "input:" << input3.c_str() << "\toutput:" << solution(input3).c_str() << endl;
+			answer();
 		}
 
 		string solution(string input)
@@ -57,7 +60,31 @@ namespace day_20180723
 
 		void answer()
 		{
-			
+			cout << "answer:" << endl;
+			string input1 = "tree";
+			string input2 = "cccaaa";
+			string input3 = "Aabb";
+			cout << "input:" << input1.c_str() << "\toutput:" << frequencySort(input1).c_str() << endl;
+			cout << "input:" << input2.c_str() << "\toutput:" << frequencySort(input2).c_str() << endl;
+			cout << "input:" << input3.c_str() << "\toutput:" << frequencySort(input3).c_str() << endl;
+		}
+
+		string frequencySort(string s) {
+			unordered_map<char, int> m;
+			priority_queue<pair<int, char>> q;
+			string str;
+			for (char c : s) {
+				m[c]++;
+			}
+			for (auto a : m) {
+				q.push({ a.second, a.first });
+			}
+			while (!q.empty()) {
+				auto t = q.top();
+				q.pop();
+				str.append(t.first, t.second);
+			}
+			return str;
 		}
 
 	};
