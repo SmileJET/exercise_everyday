@@ -21,6 +21,7 @@ namespace day_20180810
 			cout << "res:" << solution(input1) << endl;
 			vector<int> input2 = { 4, 15, 136 };
 			cout << "res:" << solution(input2) << endl;
+			answer();
 		}
 
 		int solution(vector<int> input)
@@ -41,11 +42,27 @@ namespace day_20180810
 
 		void answer()
 		{
-			
+			vector<int> input = { 4, 14, 2 };
+			cout << "res:" << totalHammingDistance(input) << endl;
+			vector<int> input1 = { 4, 142 };
+			cout << "res:" << totalHammingDistance(input1) << endl;
+			vector<int> input2 = { 4, 15, 136 };
+			cout << "res:" << totalHammingDistance(input2) << endl;
 		}
 
-		int findPoisonedDuration(vector<int>& timeSeries, int duration) {
-			
+		int totalHammingDistance(vector<int>& nums) {
+			int cnt, ans = 0;
+			for (int i = 0; i < 32; i++) {
+				cnt = 0;
+				for (int j = 0; j < nums.size(); j++) {
+					if (nums[j] & 1) {
+						cnt++;
+					}
+					nums[j] >>= 1;
+				}
+				ans += cnt * (nums.size() - cnt);
+			}
+			return ans;
 		}
 	};
 
